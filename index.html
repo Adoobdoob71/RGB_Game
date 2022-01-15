@@ -1,0 +1,316 @@
+<html>
+  <head>
+    <!-- Primary Meta Tags -->
+    <title>RGB Game</title>
+    <meta name="title" content="RGB Game" />
+    <meta name="description" content="Can you guess the RGB values?" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adoobdoob71.github.io" />
+    <meta property="og:title" content="RGB Game" />
+    <meta property="og:description" content="Can you guess the RGB values?" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://adoobdoob71.github.io" />
+    <meta property="twitter:title" content="RGB Game" />
+    <meta
+      property="twitter:description"
+      content="Can you guess the RGB values?"
+    />
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        font-size: 10px;
+        font-family: monospace;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+      .color_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: red;
+      }
+      .values_box {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-inline: 8vw;
+        /* align-self: center; */
+      }
+      .value_text_box {
+        background-color: rgb(0, 0, 0, 0.5);
+        border: 2px solid rgb(20, 20, 20);
+        border-radius: 8px;
+        padding: 12px;
+        transition: all 0.2s ease-in-out;
+      }
+      .value_text_box:focus-within {
+        border-color: rgb(75, 75, 75);
+        filter: brightness(1);
+      }
+      .input {
+        background: transparent;
+        width: auto;
+        outline: none;
+        border: none;
+        font-size: 3rem;
+        color: white;
+        width: 6rem;
+        text-align: center;
+      }
+      .submit_button {
+        padding-block: 10px;
+        padding-inline: 14px;
+        outline: none;
+        background-color: rgb(40, 40, 40);
+        color: white;
+        width: fit-content;
+        border: 2px solid rgb(20, 20, 20);
+        border-radius: 6px;
+        align-self: center;
+        margin-top: 8.1rem;
+        box-shadow: 0px 0px 0.7px rgba(0, 0, 0, 0.02),
+          0px 0px 1.6px rgba(0, 0, 0, 0.028), 0px 0px 3px rgba(0, 0, 0, 0.035),
+          0px 0px 5.4px rgba(0, 0, 0, 0.042), 0px 0px 10px rgba(0, 0, 0, 0.05),
+          0px 0px 24px rgba(0, 0, 0, 0.07);
+        transition: all 0.2s ease-in-out;
+        font-weight: bold;
+        font-size: 1.6rem;
+      }
+      .submit_button:hover {
+        cursor: pointer;
+        border-color: rgb(75, 75, 75);
+      }
+      .submit_button:active {
+        filter: brightness(0.6);
+      }
+      .footer {
+        position: absolute;
+        left: 50%;
+        top: calc(100% - 6rem);
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        background-color: rgb(0, 0, 0, 0.3);
+        padding-inline: 1rem;
+        padding-block: 0.8rem;
+        border-radius: 0.6rem;
+      }
+      .title {
+        font-size: 5rem;
+        font-weight: bold;
+        align-self: center;
+        margin-bottom: 7rem;
+      }
+      .rgb_solution {
+        color: black;
+        font-size: 5rem;
+        font-weight: bold;
+        margin-bottom: 4rem;
+        align-self: center;
+      }
+      .github_link {
+        font-size: 1.6rem;
+        color: black;
+      }
+
+      /* queries */
+      @media screen and (max-width: 650px) {
+        .title {
+          font-size: 3rem;
+        }
+        .input {
+          font-size: 1.8rem;
+          width: 4.5rem;
+        }
+        .rgb_solution {
+          font-size: 3rem;
+        }
+        .footer {
+          flex-direction: column;
+          top: calc(100% - 8rem);
+        }
+        .submit_button {
+          font-size: 1.4rem;
+        }
+      }
+      @media screen and (max-width: 400px) {
+        .title {
+          font-size: 2rem;
+        }
+        .rgb_solution {
+          font-size: 2rem;
+        }
+      }
+
+      .color_box_rainbow {
+        background: linear-gradient(
+          90deg,
+          #ff2400,
+          #e81d1d,
+          #e8b71d,
+          #e3e81d,
+          #1de840,
+          #1ddde8,
+          #2b1de8,
+          #dd00f3,
+          #dd00f3
+        );
+        background-size: 1800% 1800%;
+
+        -webkit-animation: rainbow 14s infinite;
+        -z-animation: rainbow 14s infinite;
+        -o-animation: rainbow 14s infinite;
+        animation: rainbow 14s infinite;
+      }
+
+      /* animations */
+      @-webkit-keyframes rainbow {
+        0% {
+          background-position: 0% 82%;
+        }
+        50% {
+          background-position: 100% 19%;
+        }
+        100% {
+          background-position: 0% 82%;
+        }
+      }
+      @-moz-keyframes rainbow {
+        0% {
+          background-position: 0% 82%;
+        }
+        50% {
+          background-position: 100% 19%;
+        }
+        100% {
+          background-position: 0% 82%;
+        }
+      }
+      @-o-keyframes rainbow {
+        0% {
+          background-position: 0% 82%;
+        }
+        50% {
+          background-position: 100% 19%;
+        }
+        100% {
+          background-position: 0% 82%;
+        }
+      }
+      @keyframes rainbow {
+        0% {
+          background-position: 0% 82%;
+        }
+        50% {
+          background-position: 100% 19%;
+        }
+        100% {
+          background-position: 0% 82%;
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0px; display: flex; flex-direction: column">
+    <div class="color_box" id="color_box">
+      <span class="rgb_solution" id="rgb_solution"></span>
+      <span class="title">Can you guess the RGB?</span>
+      <div class="values_box">
+        <div
+          class="value_text_box"
+          style="background-color: rgb(255, 60, 60, 0.75)"
+        >
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            id="red_value"
+            class="input"
+            maxlength="3"
+            value="0"
+            max="255"
+            min="0"
+          />
+        </div>
+        <div
+          class="value_text_box"
+          style="background-color: rgb(0, 255, 0, 0.75)"
+        >
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            id="green_value"
+            class="input"
+            maxlength="3"
+            value="0"
+            max="255"
+            min="0"
+          />
+        </div>
+        <div
+          class="value_text_box"
+          style="background-color: rgb(60, 60, 255, 0.75)"
+        >
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            id="blue_value"
+            class="input"
+            maxlength="3"
+            value="0"
+            max="255"
+            min="0"
+          />
+        </div>
+      </div>
+      <button class="submit_button" id="submit_button">SUBMIT</button>
+      <div class="footer">
+        <div style="display: flex; align-items: center">
+          <span
+            style="
+              font-size: 1.6rem;
+              font-weight: bold;
+              margin-inline-end: 1rem;
+            "
+            >Share on</span
+          >
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            data-show-count="true"
+            >Tweet</a
+          >
+        </div>
+        <div style="display: flex; align-items: center">
+          <span
+            style="font-size: 1.6rem; font-weight: bold; margin-inline: 1rem"
+            >By</span
+          >
+          <a href="https://github.com/Adoobdoob71" class="github_link"
+            >Adoobdoob71</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="game_logic.js"></script>
+  </body>
+</html>
